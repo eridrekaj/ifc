@@ -7,9 +7,14 @@ function get13MonthDate() {
 		totalDaysInYear = 364,
 		currentYearDay = Math.floor((now - new Date(now.getFullYear(), 0, 1)) / (1000 * 60 * 60 * 24)) + 1,
 		month = Math.ceil(currentYearDay / 28),
-		day = ((currentYearDay - 1) % 28) + 1;
-    
-	return { month, day, currentDate: now };
+		day = ((currentYearDay - 1) % 28) + 1,
+		leapDay = false;
+
+	if (month === 7 && day === 29) {
+		leapDay = true;
+	}
+
+	return { month, day, currentDate: now, leapDay };
 
 }
 
@@ -26,9 +31,11 @@ function getSeason(month) {
 
 function renderCalendar() {
     
-	let { month: currentMonth, day: currentDay, currentDate } = get13MonthDate(),
+	let { month: currentMonth, day: currentDay, currentDate, leapDay } = get13MonthDate(),
 		calendar = document.getElementById("calendar"),
 		formattedDate = `${currentDay} ${months[currentMonth - 1]} ${currentDate.getFullYear()}`;
+	
+	if(leapDay) { formattedDate = formattedDate + ' ( LEAP DAY )'; }
 	
 	calendar.innerHTML = "";
 
@@ -44,7 +51,7 @@ function renderCalendar() {
 			title = `${monthName} (${season})`,
 			daysDiv = document.createElement("div");
         
-		monthDiv.className = "month";
+		monthDiv.className = "month " + season;
         monthDiv.innerHTML = `<h2>${title}</h2>`;
 		
 		daysDiv.className = "days";

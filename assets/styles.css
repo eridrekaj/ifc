@@ -32,6 +32,26 @@ a {
     width: 300px;
     padding: 10px;
 }
+	
+	.month.Winter {
+		background-color: #e0f7fa;
+		color: #0277bd;
+	}
+	
+	.month.Spring {
+		background-color: #e8f5e9;
+		color: #2e7d32;
+	}
+	
+	.month.Summer {
+		background-color: #fff3e0;
+		color: #ef6c00;
+	}
+	
+	.month.Autumn {
+		background-color: #fbe9e7;
+		color: #d84315;
+	}
 
 .month h2 {
     text-align: center;
@@ -73,7 +93,7 @@ a {
 }
 
 .today {
-    background-color: #007bff;
+    background-color: #ffcc80;
     color: white;
     font-weight: bold;
 }
